@@ -72,3 +72,42 @@ const products = [
     price: 999.99,
   },
 ];
+
+// Get DOM elements
+const productsWrapper = document.getElementById('products-wrapper');
+const checkElements = document.querySelectorAll('.check');
+const filtersContainer = document.getElementById('filters-container');
+const searchInput = document.getElementById('search');
+const cartButton = document.getElementById('cart-button');
+const cartCount = document.getElementById('cart-count');
+
+// Initialize cart item count
+let cartItemCount = 0;
+
+// Initialize products
+const productsElements = [];
+
+// Loop over products and create the product elements
+products.forEach((product) => {
+  const productElement = createProductElement(product);
+  productsElements.push(productElement);
+  productsWrapper.appendChild(productElement);
+});
+
+// Create product element
+function createProductElement(product) {
+  const productElement = document.createElement('div');
+  productElement.className = 'item space-y-2';
+
+  productElement.innerHTML = `
+    <div class="bg-gray-100 flex justify-center relative overflow-hidden group cursor-pointer border">
+      <img src="${product.url}" alt="${product.name}" class="w-full h-full object-cover" />
+      <span class="status bg-black text-white absolute bottom-0 left-0 right-0 text-center py-2 translate-y-full transition group-hover:translate-y-0">Add To Cart</span>
+    </div>
+
+    <p class="text-xl">${product.name}</p>
+    <strong>$${product.price.toLocaleString()}</strong>
+  `;
+
+  return productElement;
+}
