@@ -143,3 +143,34 @@ function toggleCart(e) {
   // Update cart item count
   cartCount.innerText = cartItemCount.toString();
 }
+
+// Filter products by search or catergory
+function filterProducts() {
+  // Get search term
+  const searchTerm = searchInput.value.trim().toLowerCase();
+
+  // Get checked categories
+  const checkedCategories = Array.from(checkElements)
+    .filter((check) => check.checked)
+    .map((check) => check.id);
+
+  // Loop through products and check for matches
+  productsElements.forEach((productElement, index) => {
+    const product = products[index];
+
+    // Check to see if product matches the search or checked items
+    const matchesSearchTerm = product.name.toLowerCase().includes(searchTerm);
+    const isInCheckedCategory = checkedCategories.length === 0 || checkedCategories.includes(product.type);
+
+    // Show or hide product based on matches
+    if (matchesSearchTerm && isInCheckedCategory) {
+      productElement.classList.remove('hidden');
+    } else {
+      productElement.classList.add('hidden');
+    }
+  });
+}
+
+// Filter event listners
+filtersContainer.addEventListener('change', filterProducts);
+searchInput.addEventListener('input', filterProducts);
