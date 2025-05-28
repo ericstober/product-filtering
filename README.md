@@ -44,7 +44,3 @@ product-filtering/
 - **Adding Products**: Modify the product data within `script.js` to add or remove products.
 - **Styling**: Customize the design by editing the Tailwind CSS classes in `index.html`.
 - **Functionality**: Enhance or modify the JavaScript functions in `script.js` to suit your needs.
-
-## License
-
-This project is open-source and available under the MIT License.
